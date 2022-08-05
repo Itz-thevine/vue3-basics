@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        .fav{
+            background-color: gray !important;
+        }
+    </style>
+    <title>vue-attribute-binding</title>
+</head>
+<body>
+    
+    <main class="d-flex text-center justify-content-center align-items-center bg-dark text-white" >
+        <div id="app">
+            <h1 class="mb-5">Vue Attribute binding</h1>
+            <div class="w-100 container ms-3 position-relative">
+                <div @click="showSelectOptions" class="bg-success w-25 mb-5 py-2 d-flex justify-content-between px-3">
+                    <p class="mb-0">{{select}}</p>
+                    <i v-if="showSelected" class="bi bi-caret-down-fill"></i>
+                    <i v-else class="bi bi-caret-right-fill"></i>
+                </div>
+                <div v-if="showSelected" class="position-absolute w-25 bg-success d-flex flex-column align-items-start px-3 pt-3" role="button" style="top: 45px;">
+                    <p @click="setSelectValue('All')" class="w-100 d-flex">All</p>
+                    <p @click="setSelectValue('Series')" class="w-100 d-flex">Series</p>
+                    <p @click="setSelectValue('Collection')" class="w-100 d-flex">Collection</p>
+                </div>
+            </div>
+            <ul class="d-flex flex-column">
+                <li v-for="(movie, index) in movies" @click="toggleFav(index)" class="d-flex bg-success justify-content-around align-items-center mb-5 py-3" :class="{ fav:movie.isFav }">
+                    <img :src="movie.photoUrl" :alt="movie.title" class="h-auto" style="height: 10%; width: 10%;">
+                    <p class="mb-0">{{movie.title}}</p>
+                    <p class="mb-0">{{movie.type}}</p>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="app.js"></script> 
+</body>
+</html>
