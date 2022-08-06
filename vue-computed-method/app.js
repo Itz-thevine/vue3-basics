@@ -12,9 +12,6 @@ const app = Vue.createApp({
         }
     },
     methods: {
-        toggleFav (e) {
-            this.movies[e].isFav = !this.movies[e].isFav
-        }, 
         showSelectOptions () {
             this.showSelected = !this.showSelected;
         },
@@ -24,7 +21,15 @@ const app = Vue.createApp({
         }
     },
     computed: {
-        
+        filterMovie () {
+            if (this.select === 'All') {
+                return this.movies 
+            } else if (this.select === 'Collection' ){
+                return this.movies.filter((movie) => movie.type === 'collection')
+            } else {
+                return this.movies.filter((movie) => movie.type === 'series')
+            }
+        }
     }
 })
 
